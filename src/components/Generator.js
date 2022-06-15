@@ -12,7 +12,7 @@ export const Generator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstQ + ' <- fq and lq: ' + lastQ)
+    // console.log(firstQ + " <- fq and lq: " + lastQ);
     if (lastQ < firstQ) {
       console.log(
         "Your first question integer is smaller then your last question integer."
@@ -26,15 +26,14 @@ export const Generator = () => {
       }
       return newArr;
     });
-    setRolledQuestions(prev => []);
+    setRolledQuestions((prev) => []);
+    setRolledNum((prev) => null);
   };
 
   const handleClick = () => {
-    //const copyArr = questions;
     const randomNum = Math.floor(Math.random() * questions.length);
     const targetNum = questions[randomNum];
     setRolledNum(targetNum);
-    //copyArr.splice(randomNum, 1);
     setQuestions((prev) => {
       return prev.filter((t) => t !== targetNum);
     });
@@ -45,7 +44,6 @@ export const Generator = () => {
     <>
       <h1>Questions counter</h1>
       <form onSubmit={handleSubmit}>
-
         <label htmlFor="firstQ">First Question: </label>
         <input
           type="number"
@@ -55,7 +53,7 @@ export const Generator = () => {
           min="1"
           max="200"
           value={firstQ}
-          onChange={(e) => setFirstQ(prev => e.target.value)}
+          onChange={(e) => setFirstQ((prev) => e.target.value)}
         />
         <label htmlFor="lastQ">Last Question: </label>
         <input
@@ -66,7 +64,7 @@ export const Generator = () => {
           min="1"
           max="200"
           value={lastQ}
-          onChange={(e) => setLastQ(prev => e.target.value)}
+          onChange={(e) => setLastQ((prev) => e.target.value)}
         />
         <input type="submit" value="Generate!" />
       </form>
@@ -76,12 +74,18 @@ export const Generator = () => {
   return (
     <>
       {form}
-      {questions.length > 0 ? <button onClick={handleClick}>Roll a dice!</button> : null}
-      {rolledNum ? <h3>You just rolled: {rolledNum}</h3> : null}
-      {questions.length > 0 ? <QuestionsTracker questions={questions} /> : null}
-      {rolledQuestions.length > 0 ? (
-        <RolledQuestions rolledQuestions={rolledQuestions} />
+      {questions.length > 0 ? (
+        <button onClick={handleClick}>Roll a dice!</button>
       ) : null}
+      {rolledNum ? <h3>You just rolled: {rolledNum}</h3> : null}
+      <section className="overview">
+        {questions.length > 0 ? (
+          <QuestionsTracker questions={questions} />
+        ) : null}
+        {rolledQuestions.length > 0 ? (
+          <RolledQuestions rolledQuestions={rolledQuestions} />
+        ) : null}
+      </section>
     </>
   );
 };
