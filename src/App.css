@@ -28,5 +28,19 @@ button {
 }
 
 h2 {
-    font-size: 18px;
+    font-size: 16px;
+}
+
+.big-counter {
+    display: flex;
+    justify-content: space-around;
+}
+
+.red {
+    color: rgb(213, 84, 84);
+    font-size: 30px;
+}
+
+.green {
+    color: rgb(21, 218, 21);
 }

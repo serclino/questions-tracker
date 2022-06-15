@@ -7,7 +7,7 @@ export const Generator = () => {
   const [rolledQuestions, setRolledQuestions] = useState([]);
 
   const [firstQ, setFirstQ] = useState(1);
-  const [lastQ, setLastQ] = useState(200);
+  const [lastQ, setLastQ] = useState(20);
   const [rolledNum, setRolledNum] = useState(null);
 
   const handleSubmit = (e) => {
@@ -74,10 +74,19 @@ export const Generator = () => {
   return (
     <>
       {form}
-      {questions.length > 0 ? (
-        <button onClick={handleClick}>Roll a dice!</button>
-      ) : null}
-      {rolledNum ? <h3>You just rolled: {rolledNum}</h3> : null}
+      <section className="big-counter">
+        {questions.length > 0 ? (
+          <button onClick={handleClick}>Roll a dice!</button>
+        ) : null}
+        {questions.length > 0 ? (
+          <div className="small-counter">
+            <h3>
+              You just rolled: <span className="red">{rolledNum ? rolledNum : " "}</span>
+            </h3>
+            <h5>Num of Q left: <span className="green">{questions.length}</span></h5>
+          </div>
+        ) : null}
+      </section>
       <section className="overview">
         {questions.length > 0 ? (
           <QuestionsTracker questions={questions} />
