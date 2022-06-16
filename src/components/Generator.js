@@ -12,7 +12,11 @@ export const Generator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(firstQ + " <- fq and lq: " + lastQ);
+    console.log(firstQ + " <- fq & lq -> " + lastQ);
+    console.log(typeof firstQ);
+    console.log(typeof lastQ);
+    console.log(lastQ < firstQ);
+
     if (lastQ < firstQ) {
       console.log(
         "Your first question integer is smaller then your last question integer."
@@ -53,7 +57,7 @@ export const Generator = () => {
           min="1"
           max="200"
           value={firstQ}
-          onChange={(e) => setFirstQ((prev) => e.target.value)}
+          onChange={(e) => setFirstQ((prev) => Number(e.target.value))}
         />
         <label htmlFor="lastQ">Last Question: </label>
         <input
@@ -64,7 +68,7 @@ export const Generator = () => {
           min="1"
           max="200"
           value={lastQ}
-          onChange={(e) => setLastQ((prev) => e.target.value)}
+          onChange={(e) => setLastQ((prev) => Number(e.target.value))}
         />
         <input type="submit" value="Generate!" />
       </form>
@@ -81,9 +85,12 @@ export const Generator = () => {
         {questions.length > 0 ? (
           <div className="small-counter">
             <h3>
-              You just rolled: <span className="red">{rolledNum ? rolledNum : " "}</span>
+              You just rolled:{" "}
+              <span className="red">{rolledNum ? rolledNum : " "}</span>
             </h3>
-            <h5>Num of Q left: <span className="green">{questions.length}</span></h5>
+            <h5>
+              Num of Q left: <span className="green">{questions.length}</span>
+            </h5>
           </div>
         ) : null}
       </section>
