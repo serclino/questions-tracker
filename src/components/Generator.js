@@ -50,6 +50,7 @@ export const Generator = () => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="firstQ">First Question: </label>
         <input
+          inputMode="numeric"
           type="number"
           name="firstQ"
           id="firstQ"
